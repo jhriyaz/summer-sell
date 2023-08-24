@@ -1,19 +1,21 @@
-// convert to a number function
+
+/**
+ * The function `getProductPriceInNumber` retrieves the price of a product from the HTML document and
+ * returns it as a number.
+ * @param id - The id parameter is the id of the HTML element that contains the product price.
+ * @returns the price of a product as a number.
+ */
 function getProductPriceInNumber(id) {
 
-    let totalPriceString = document.getElementById(id).innerText
-    let total = parseFloat(totalPriceString)
-    return total
+    let itemPriceString = document.getElementById(id).innerText
+    let itemPrice = parseFloat(itemPriceString)
+    return itemPrice
 }
 document.getElementById('couponCode').addEventListener('click', function (e) {
     navigator.clipboard.writeText(e.target.innerText);
     document.getElementById('coupon-alert-message').classList.replace('hidden', 'flex')
 
 })
-
-
-
-
 
 // enables disabled buttons
 function buttonEnable(buttonId) {
@@ -56,7 +58,9 @@ let couponField = document.getElementById('couponField')
 
 
 function getProductPrice(target) {
+
     // enables disabled button on add cart
+
     let itemPrice = parseFloat(target.children[1].lastElementChild.firstChild.innerText)
     buttonEnable('purchaseButton')
     // adding items on cart list and set name to cart list with item price
@@ -67,7 +71,7 @@ function getProductPrice(target) {
     cartListBox.classList.remove('hidden')
     cartListBox.appendChild(p)
 
-    // adding item price to total estimated ammount
+    // adding item price to total estimated amount
     totalPrice += itemPrice
     document.getElementById('total-price').innerText = totalPrice.toFixed(2)
     // discount add if new added to cart cart
@@ -90,12 +94,13 @@ couponField.addEventListener('focusout', function () {
         document.getElementById('discount-Price').innerText = discountPrice.toFixed(2);
         document.getElementById('net-Price').innerText = netPrice.toFixed(2)
         couponButton.innerText = 'ApplY'
-        document.getElementById('coupon-apply-alert-message').innerHTML =  `coupon removed <br> please put correct code and click apply`
+        document.getElementById('coupon-apply-alert-message').innerHTML = `coupon removed <br> please put correct code and click apply`
         document.getElementById('coupon-apply-alert-message').classList.replace('alert-success', 'alert-error')
 
     }
 
 })
+
 // discount calculation
 couponButton.addEventListener('click', discountValidation)
 // reload page after purchase
